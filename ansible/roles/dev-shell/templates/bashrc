@@ -12,5 +12,5 @@ alias wow='git status'
 alias concern='git status'
 
 # for convenience
-cd /opt/dev/panas-t
+cd /opt/dev/koomus
 
