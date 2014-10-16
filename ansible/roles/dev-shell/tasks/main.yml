@@ -1,0 +1,37 @@
+---
+# SETUP DEV SHELL
+# ====================================================
+
+- name: set id_rsa.pub
+  template: src=~/.ssh/id_rsa.pub dest=~/.ssh/id_rsa.pub
+
+- name: set id_rsa
+  template: src=~/.ssh/id_rsa dest=~/.ssh/id_rsa
+
+- file: path=~/.ssh/id_rsa owner=vagrant group=vagrant mode=0600
+
+- name: install git prompt
+  copy: src=git-prompt.sh dest=/home/vagrant/.git-prompt.sh
+
+- name: set bashrc
+  template: src=bashrc dest=~/.bashrc
+
+- name: set git user
+  shell: git config --global user.name "{{ git_user }}"
+
+- name: set git email
+  shell: git config --global user.email "{{ git_email }}"
+
+- name: set git editor
+  shell: git config --global core.editor "{{ git_editor }}"
+
+- name: ensure that github is a known host
+  shell:
+    creates=/etc/ssh/ssh_known_hosts
+    ssh-keyscan github.com >> /etc/ssh/ssh_known_hosts
+  sudo: yes
+
+- git:
+    repo=git@github.com:garycrawford/koomus.git
+    dest=/opt/dev/koomus
+    update=no

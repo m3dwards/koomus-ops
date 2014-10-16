@@ -1,0 +1,73 @@
+---
+# BASICS
+# ====================================================
+
+- name: Update APT package cache
+  action: apt update_cache=yes
+  
+
+
+# CREATE DEPLOY USER
+# ====================================================
+
+#- name: Add deployment user
+#  action: user name=deploy password={{ deploy_user_password }}
+
+#- name: Add authorized deploy key
+#  authorized_key: user=deploy key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+#- name: Remove sudo group rights
+#  action: lineinfile dest=/etc/sudoers regexp="^%sudo" state=absent
+
+#- name: Add deploy user to sudoers
+#  action: lineinfile dest=/etc/sudoers regexp="deploy ALL" line="deploy ALL=(ALL) NOPASSWD:ALL" state=present
+  
+# CREATE WWW FOLDER FOR WEB APPS
+# ====================================================
+
+#- name: create /var/www
+#  file: path=/var/www state=directory
+
+#- name: set folder permissions on /var/www
+#  command: sudo {{ item }}
+#  with_items:
+#  - adduser deploy www-data
+#  - chown -R www-data:www-data /var/www
+#  - chmod -R g+rw /var/www
+
+  
+# INSTALL JAVA + LEIN
+# ====================================================
+
+- name: add python software properties
+  apt: pkg=python-software-properties state=installed
+
+- name: Automatically select the Oracle License
+  shell: echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+
+- name: add java apt_repository
+  apt_repository: repo='ppa:webupd8team/java' update_cache=yes
+
+- name: install java
+  apt: pkg=oracle-java8-installer state=installed
+    
+- name: ensure wget is installed
+  apt: pkg=wget state=installed
+
+- name: get lein script
+  command: wget --no-check-certificate -O {{ install_path }} {{ lein_script_path }}
+  sudo: True
+
+- name: make executable
+  command: chmod 755 /usr/local/bin/lein
+
+- name: make sure that the .lein directory exists
+  shell: su - vagrant -c 'mkdir -p /home/vagrant/.lein'
+
+- name: copy profiles file
+  template: src=profiles.clj dest=/home/vagrant/.lein/profiles.clj owner=vagrant group=vagrant mode=0644
+
+#- name: install heroku tools
+#  shell: wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+#  sudo: True
+

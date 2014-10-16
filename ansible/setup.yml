@@ -1,0 +1,21 @@
+---
+- hosts: all
+  sudo: yes
+  gather_facts: no
+  vars:
+    install_path: /usr/local/bin/lein # system wide install
+    lein_script_path: https://raw.github.com/technomancy/leiningen/preview/bin/lein
+  roles:
+    - firewall
+    - clojure
+    - dev-tools
+
+- hosts: all
+  sudo: no
+  gather_facts: no
+  vars:
+    git_user: "{{ lookup('pipe','git config --get user.name') }}"
+    git_email: "{{ lookup('pipe','git config --get user.email') }}"
+    git_editor: vim
+  roles:
+    - dev-shell    

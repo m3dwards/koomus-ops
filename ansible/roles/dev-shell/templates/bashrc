@@ -1,0 +1,16 @@
+
+# very git orienting
+source /home/vagrant/.git-prompt.sh
+
+# much nice prompt
+PS1='v \[\033[01;34m\]\W\[\033[00m\]$(__git_ps1 " (%s)") $ '
+
+# such alias
+alias such=git
+alias very=git
+alias wow='git status'
+alias concern='git status'
+
+# for convenience
+cd /opt/dev/panas-t
+

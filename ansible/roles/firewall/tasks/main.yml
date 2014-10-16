@@ -1,0 +1,29 @@
+---
+# SETUP FIREWALL
+# ====================================================
+
+#- name: Wait for server to come up
+#  local_action: wait_for host={{ inventory_hostname }} port=22 delay=30
+#  sudo: false
+
+- name: Install fail2ban
+  action: apt pkg=fail2ban state=installed
+
+- name: Setup ufw
+  action: shell ufw allow 22
+  
+- name: Setup ufw
+  action: shell ufw allow 80
+  
+- name: Setup ufw
+  action: shell ufw allow 443
+
+- name: Setup ufw
+  action: shell ufw allow 5000  
+
+- name: Setup ufw
+  action: shell ufw allow 1234  
+
+- name: Enable ufw
+  action: shell echo 'y' | ufw enable
+  
