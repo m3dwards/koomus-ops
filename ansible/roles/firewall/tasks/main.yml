@@ -19,10 +19,10 @@
   action: shell ufw allow 443
 
 - name: Setup ufw
-  action: shell ufw allow 5000  
+  action: shell ufw allow 5017  
 
 - name: Setup ufw
-  action: shell ufw allow 1234  
+  action: shell ufw allow 1236  
 
 - name: Enable ufw
   action: shell echo 'y' | ufw enable
