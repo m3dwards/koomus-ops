@@ -1,1 +1,0 @@
-{"virtualbox":{"/opt/dev":{"create":true,"guestpath":"/opt/dev","hostpath":"/Users/maxedwar/source/koomus-ops/dev"},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/maxedwar/source/koomus-ops"}}}
