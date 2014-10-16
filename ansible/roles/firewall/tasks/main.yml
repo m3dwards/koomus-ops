@@ -2,9 +2,9 @@
 # SETUP FIREWALL
 # ====================================================
 
-#- name: Wait for server to come up
-#  local_action: wait_for host={{ inventory_hostname }} port=22 delay=30
-#  sudo: false
+- name: Wait for server to come up
+  local_action: wait_for host={{ inventory_hostname }} port=22 delay=30
+  sudo: false
 
 - name: Install fail2ban
   action: apt pkg=fail2ban state=installed
