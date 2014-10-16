@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.hostname = 'koomus'
   
-  config.vm.network :private_network, ip: '33.33.33.33'
+  config.vm.network :private_network, ip: '172.16.0.33'
   
   config.vm.network "forwarded_port", guest: 5000, host: 5000
   config.vm.network "forwarded_port", guest: 1234, host: 1234
