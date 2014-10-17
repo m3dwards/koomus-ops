@@ -32,3 +32,15 @@
 
 - name: install paredit
   git: repo=https://github.com/vim-scripts/paredit.vim.git dest=/home/vagrant/.vim/bundle/paredit.vim
+
+- name: install zsh
+  apt: pkg=zsh state=installed update_cache=yes
+
+- name: install zsh | clone oh-my-zsh repo
+  git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/vagrant/.oh-my-zsh
+
+- name: install zsh | set zshrc
+  template: src=zshrc dest=/home/vagrant/.zshrc
+
+- name: install zsh | make zsh default shell
+  user: user=vagrant shell=/bin/zsh
