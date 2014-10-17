@@ -27,6 +27,9 @@
 - name: install vim-fireplace
   git: repo=https://github.com/tpope/vim-fireplace.git dest=/home/vagrant/.vim/bundle/vim-fireplace
 
+- name: install vim-classpath
+  git:  repo=https://github.com/tpope/vim-classpath.git dest=/home/vagrant/.vim/bundle/vim-classpath
+
 - name: install vim-clojure-static
   git: repo=https://github.com/guns/vim-clojure-static.git dest=/home/vagrant/.vim/bundle/vim-clojure-static
 
