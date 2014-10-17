@@ -4,7 +4,7 @@
   gather_facts: no
   vars:
     install_path: /usr/local/bin/lein # system wide install
-    lein_script_path: https://raw.github.com/technomancy/leiningen/preview/bin/lein
+    lein_script_path: https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
   roles:
     - firewall
     - clojure
