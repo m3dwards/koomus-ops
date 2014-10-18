@@ -40,3 +40,21 @@
    repo=git@github.com:lawrab/koomus.hippo.git
    dest=/opt/dev/koomus.hippo
    update=no
+
+- name: install zsh
+  apt: pkg=zsh state=installed update_cache=yes
+  sudo: yes
+
+- name: install zsh | clone oh-my-zsh repo
+  git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/vagrant/.oh-my-zsh
+
+- name: install zsh | set zshrc
+  template: src=zshrc dest=/home/vagrant/.zshrc
+
+- name: install zsh | make zsh default shell
+  user: user=vagrant shell=/bin/zsh
+  sudo: yes
+
+- name: install zsh | set zsh-custom.sh
+  copy: src=zsh-custom.zsh dest=/home/vagrant/.oh-my-zsh/custom/zsh-custom.zsh
+
