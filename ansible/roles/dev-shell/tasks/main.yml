@@ -47,6 +47,7 @@
 
 - name: install zsh | clone oh-my-zsh repo
   git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/vagrant/.oh-my-zsh
+  sudo: yes
 
 - name: install zsh | set zshrc
   template: src=zshrc dest=/home/vagrant/.zshrc
@@ -57,4 +58,8 @@
 
 - name: install zsh | set zsh-custom.sh
   copy: src=zsh-custom.zsh dest=/home/vagrant/.oh-my-zsh/custom/zsh-custom.zsh
+  sudo: yes
 
+- name: install zsh | set zsh-vm-theme
+  copy: src=dev-vm.zsh-theme dest=/home/vagrant/.oh-my-zsh/themes/dev-vm.zsh-theme
+  sudo: yes
