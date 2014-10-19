@@ -24,6 +24,9 @@
 - name: Setup ufw
   action: shell ufw allow 1236  
 
+- name: Setup ufw
+  action: shell ufw allow 8989  
+
 - name: Enable ufw
   action: shell echo 'y' | ufw enable
   
