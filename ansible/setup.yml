@@ -3,12 +3,14 @@
   sudo: yes
   gather_facts: no
   vars:
+    redis_conf_path: /etc/redis/
     install_path: /usr/local/bin/lein # system wide install
     lein_script_path: https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
   roles:
     - firewall
     - clojure
     - dev-tools
+    - redis
 
 - hosts: all
   sudo: no
