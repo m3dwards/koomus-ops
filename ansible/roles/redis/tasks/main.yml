@@ -1,0 +1,12 @@
+---
+# INSTALL REDIS
+# ====================================================
+
+- name: redis | add repository
+  apt_repository: repo='ppa:rwky/redis' update_cache=yes
+
+- name: redis | install
+  apt: pkg=redis-server state=installed
+
+- name: redis | stop redis-server
+  service: name=redis-server state=stopped enabled=no
