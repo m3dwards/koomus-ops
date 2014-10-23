@@ -1,34 +1,27 @@
 #!/bin/bash
 SESSION=$USER
 
+cd /opt/dev/koomus
+
 tmux -2 new-session -d -s $SESSION
-
-function configure () {
-  tmux send-keys "vagrant ssh" C-m
-  tmux send-keys "cd /opt/dev/koomus" C-m
-  tmux send-keys "clear" C-m
-
-if [ ! -z "$1" ]
-   then
-     tmux send-keys "$1" C-m
-   fi
-}
 
 # Setup main window for VIM
 tmux new-window -t $SESSION:1 -n 'Dev'
 tmux split-window -h
 tmux select-pane -t 0
 tmux resize-pane -R 10
-configure 'vim'
+tmux send-keys "clear" C-m 
+tmux send-keys "vim" C-m 
 
 # Setup top left window for REPL
 tmux select-pane -t 1
-configure 'lein repl'
+tmux send-keys "clear" C-m 
+tmux send-keys "lein repl" C-m 
 
 # Setup bottom right window as shell - e.g. for git
 tmux split-window -v
 tmux select-pane -t 2
-configure
+tmux send-keys "clear" C-m 
 
 # Attach to session
 tmux -2 attach-session -t $SESSION
