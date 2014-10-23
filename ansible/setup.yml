@@ -20,4 +20,46 @@
     git_email: "{{ lookup('pipe','git config --get user.email') }}"
     git_editor: vim
   roles:
-    - dev-shell    
+    - dev-shell
+
+# monitoring
+- hosts: all
+  sudo: yes
+  vars:
+    graphite:
+      version: master
+      timezone: Europe/Paris
+      workers: 4
+      host: 0.0.0.0
+      server: graphite.local
+      secret_key: 'ob3sow^ik#4q(k5*tgw&6j+osyr^@0jus$yd+-#^&^d#%yim1!'
+    carbon:
+      host: 0.0.0.0
+      ssl: no
+    db_graphite:
+      name: graphite
+      user: graphite
+      password: graphite
+    sentry:
+      server: sentry.local
+      url: http://sentry.local
+      secret_key: 'my69eAMYjzqtmfaRJ107MeXCYDTaxQdNZPr8YOe/zOV5pIUoZa5biA=='
+    db_sentry:
+      name: sentry
+      user: sentry
+      password: sentry
+    superuser_sentry:
+      username: admin
+      email: admin@example.com
+      password: admin
+  roles:
+    - monitoring/common
+    - monitoring/python
+    - monitoring/supervisor
+    - role: monitoring/nginx
+      nginx_sites: none
+    - monitoring/postgres
+    - monitoring/graphite
+    - monitoring/nodejs
+    - monitoring/statsd
+    - monitoring/sentry

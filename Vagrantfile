@@ -12,6 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   config.vm.network :private_network, ip: '172.16.0.33'
   
+  config.vm.network "forwarded_port", guest: 80, host: 6532
   config.vm.network "forwarded_port", guest: 5000, host: 5017
   config.vm.network "forwarded_port", guest: 1234, host: 1236
   config.vm.network "forwarded_port", guest: 8989, host: 8980
@@ -30,7 +31,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.limit = 'all'
     ansible.playbook       = 'ansible/setup.yml'
     ansible.inventory_path = 'hosts'
-    ansible.verbose        = 'v'
+    ansible.verbose        = 'vvvv'
   end
 
 end

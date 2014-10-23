@@ -51,3 +51,8 @@
   notify:
     - restart nginx
     - reload supervisor
+
+- name: Update hosts file
+  lineinfile: dest=/etc/hosts regexp='.*{{item}}$' line='{{hostvars.{{item}}.ansible_default_ipv4.address}} {{item}}' state=present
+  with_items: 'sentry.local'
+  
