@@ -1,0 +1,55 @@
+---
+# SETUP TEXT TRIUMVIRATE
+# ====================================================
+
+# SETUP VIM
+- name: install vim
+  apt: pkg=vim state=installed
+
+- name: install vim | set vimrc
+  template: src=vimrc dest=/home/vagrant/.vimrc
+
+- name: install vim | create pathogen autoload dir
+  file: path=/home/vagrant/.vim/autoload group=vagrant owner=vagrant state=directory
+
+- name: install vim | create pathogen bundle dir
+  file: path=/home/vagrant/.vim/bundle group=vagrant owner=vagrant state=directory
+
+- name: install vim | download pathogen
+  get_url: url=https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim 
+           dest=/home/vagrant/.vim/autoload/pathogen.vim
+
+# SETUP ZSH
+- name: install zsh
+  apt: pkg=zsh state=installed update_cache=yes
+  sudo: yes
+
+- name: install zsh | clone oh-my-zsh repo
+  git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/vagrant/.oh-my-zsh
+  sudo: yes
+
+- name: install zsh | set zshrc
+  template: src=zshrc dest=/home/vagrant/.zshrc
+
+- name: install zsh | make zsh default shell
+  user: user=vagrant shell=/bin/zsh
+  sudo: yes
+
+- name: install zsh | set zsh-custom.sh
+  copy: src=zsh-custom.zsh dest=/home/vagrant/.oh-my-zsh/custom/zsh-custom.zsh
+  sudo: yes
+
+- name: install zsh | set zsh-vm-theme
+  copy: src=dev-vm.zsh-theme dest=/home/vagrant/.oh-my-zsh/themes/dev-vm.zsh-theme
+  sudo: yes
+
+# SETUP TMUX
+- name: install tmux
+  apt: pkg=tmux state=installed update_cache=yes
+  sudo: yes
+
+- name: install tmux | set tmux conf
+  template: src=tmux.conf dest=/home/vagrant/.tmux.conf
+
+- name: install vim
+  apt: pkg=vim state=installed

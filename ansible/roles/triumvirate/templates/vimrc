@@ -10,6 +10,10 @@ set autochdir
 let NERDTreeChDirMode=2
 nnoremap <leader>n :NERDTree .<CR>
 
+" set theme
+set background=light
+colorscheme mustang
+
 autocmd vimenter * if !argc() | NERDTree | endif
 map <C-n> :NERDTreeToggle<CR>
 
@@ -26,10 +30,10 @@ map <C-n> :NERDTreeToggle<CR>
         set statusline+=%<%P                         " file position  
 "}
 
-" The bundle for Rainbow isn't working - TODO: need to fix this or remove!
-" Rainbow Parenthesis {
+" this seems to be broken :(
+"" Rainbow Parenthesis {
 "       au VimEnter * RainbowParenthesesToggle
 "       au Syntax * RainbowParenthesesLoadRound
 "       au Syntax * RainbowParenthesesLoadSquare
 "       au Syntax * RainbowParenthesesLoadBraces
-"}
+""}

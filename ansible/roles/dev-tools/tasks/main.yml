@@ -2,22 +2,6 @@
 # SETUP DEV TOOLS
 # ====================================================
 
-- name: install vim
-  apt: pkg=vim state=installed
-
-- name: install vim | create pathogen autoload dir
-  file: path=/home/vagrant/.vim/autoload group=vagrant owner=vagrant state=directory
-
-- name: install vim | create pathogen bundle dir
-  file: path=/home/vagrant/.vim/bundle group=vagrant owner=vagrant state=directory
-
-- name: install vim | download pathogen
-  get_url: url=https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim 
-           dest=/home/vagrant/.vim/autoload/pathogen.vim
-
-- name: install vim | set vimrc
-  template: src=vimrc dest=/home/vagrant/.vimrc
-
 - name: install git
   apt: pkg=git state=installed
 
@@ -36,4 +20,26 @@
 - name: install paredit
   git: repo=https://github.com/vim-scripts/paredit.vim.git dest=/home/vagrant/.vim/bundle/paredit.vim
 
+- name: install rainbow-parenthesis
+  git: repo=https://github.com/vim-scripts/Rainbow-Parenthesis.git dest=/home/vagrant/.vim/bundle/rainbow_parenthesis.vim
 
+- name: install airline
+  git: repo=https://github.com/bling/vim-airline dest=/home/vagrant/.vim/bundle/vim-airline
+
+- name: install signify
+  git: repo=https://github.com/mhinz/vim-signify dest=/home/vagrant/.vim/bundle/vim-signify
+
+- name: install gitgutter
+  git: repo=https://github.com/airblade/vim-gitgutter.git dest=/home/vagrant/.vim/bundle/vim-gitgutter
+
+- name: install tmuxline
+  git: repo=https://github.com/edkolev/tmuxline.vim dest=/home/vagrant/.vim/bundle/tmuxline 
+
+- name: install mustang vim
+  git: repo=https://github.com/croaker/mustang-vim.git dest=/home/vagrant/.vim/bundle/mustang-vim
+
+- name: tmux dev script | add to bin
+  copy: src=koomus dest=/usr/local/bin/koomus
+
+- name: tmux dev script | make executable
+  command: chmod 755 /usr/local/bin/koomus
