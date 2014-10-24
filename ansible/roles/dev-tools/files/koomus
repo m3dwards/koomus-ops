@@ -1,26 +1,29 @@
 #!/bin/bash
 SESSION=$USER
 
-cd /opt/dev/koomus
-
 tmux -2 new-session -d -s $SESSION
 
-# Setup main window for VIM
+# Get into the koomus project
 tmux new-window -t $SESSION:1 -n 'Dev'
+
+# Setup main window for VIM
 tmux split-window -h
 tmux select-pane -t 0
 tmux resize-pane -R 10
+tmux send-keys "cd /opt/dev/koomus" C-m 
 tmux send-keys "clear" C-m 
 tmux send-keys "vim" C-m 
 
 # Setup top left window for REPL
 tmux select-pane -t 1
+tmux send-keys "cd /opt/dev/koomus" C-m 
 tmux send-keys "clear" C-m 
 tmux send-keys "lein repl" C-m 
 
 # Setup bottom right window as shell - e.g. for git
 tmux split-window -v
 tmux select-pane -t 2
+tmux send-keys "cd /opt/dev/koomus" C-m 
 tmux send-keys "clear" C-m 
 
 # Attach to session

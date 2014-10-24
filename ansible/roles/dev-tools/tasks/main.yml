@@ -21,7 +21,7 @@
   git: repo=https://github.com/vim-scripts/paredit.vim.git dest=/home/vagrant/.vim/bundle/paredit.vim
 
 - name: install rainbow-parenthesis
-  git: repo=https://github.com/vim-scripts/Rainbow-Parenthesis.git dest=/home/vagrant/.vim/bundle/rainbow_parenthesis.vim
+  git: repo=https://github.com/kien/rainbow_parentheses.vim.git dest=/home/vagrant/.vim/bundle/rainbow_parenthesis.vim
 
 - name: install airline
   git: repo=https://github.com/bling/vim-airline dest=/home/vagrant/.vim/bundle/vim-airline

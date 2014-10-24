@@ -30,10 +30,9 @@ map <C-n> :NERDTreeToggle<CR>
         set statusline+=%<%P                         " file position  
 "}
 
-" this seems to be broken :(
-"" Rainbow Parenthesis {
-"       au VimEnter * RainbowParenthesesToggle
-"       au Syntax * RainbowParenthesesLoadRound
-"       au Syntax * RainbowParenthesesLoadSquare
-"       au Syntax * RainbowParenthesesLoadBraces
-""}
+" Rainbow Parenthesis {
+       au VimEnter * RainbowParenthesesToggle
+       au Syntax * RainbowParenthesesLoadRound
+       au Syntax * RainbowParenthesesLoadSquare
+       au Syntax * RainbowParenthesesLoadBraces
+"}
