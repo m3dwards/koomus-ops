@@ -1,0 +1,1 @@
+%vagrant ALL=(postgres)NOPASSWD:ALL

@@ -1,0 +1,6 @@
+---
+- name: install common packages debian/ubuntu
+  apt: pkg={{ item }} state=latest update_cache=yes
+  with_items:
+    - build-essential
+  when: ansible_os_family == "Debian"
