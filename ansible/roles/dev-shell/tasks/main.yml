@@ -35,8 +35,3 @@
     repo=git@github.com:garycrawford/koomus.git
     dest=/opt/dev/koomus
     update=no
-
-- git:
-   repo=git@github.com:lawrab/koomus.hippo.git
-   dest=/opt/dev/koomus.hippo
-   update=no
