@@ -3,8 +3,15 @@
   connection: local
   sudo: yes
   tasks:
+
   - name: Update local host file
-    lineinfile: dest=/etc/hosts regexp='.*{{item}}$' line='127.0.0.1 {{item}}' state=present
+    lineinfile: dest=/etc/hosts regexp='.*{{item}}$' line='127.0.0.1 {{item}}' state=absent
+    with_items:
+      - graphite.local
+      - sentry.local
+
+  - name: Update local host file
+    lineinfile: dest=/etc/hosts regexp='.*{{item}}$' line='172.16.0.33 {{item}}' state=present
     with_items:
       - graphite.local
       - sentry.local
