@@ -50,8 +50,7 @@
 
 # This is a bit of a hack to create a superuser automatically without interactive input. TODO: Create a proper python script for this!
 - name: create admin user
-  action: >
-    shell source ve/bin/activate && export SENTRY_CONF=/var/sentry/sentry_conf.py && python /var/sentry/superuser.py executable=/bin/bash chdir=/var/sentry
+  action: shell source ve/bin/activate && export SENTRY_CONF=/var/sentry/sentry_conf.py && python /var/sentry/superuser.py executable=/bin/bash chdir=/var/sentry
   notify:
     - restart nginx
     - reload supervisor
