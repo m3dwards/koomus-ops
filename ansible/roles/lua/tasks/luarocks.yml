@@ -1,0 +1,24 @@
+# Installs luarocks
+
+- name: install lua dev libs
+  apt: pkg=liblua5.2-dev
+
+- name: download luarocks source
+  get_url: url=http://luarocks.org/releases/luarocks-2.2.0.tar.gz dest=/tmp/
+
+- name: unpack luarocks tarball
+  command: tar zxf luarocks-2.2.0.tar.gz chdir=/tmp
+
+- name: lookup directory name
+  shell: ls -d /tmp/*/ | grep luarocks
+  register: luarocks_dir
+
+- name: configure luarocks
+  shell: ./configure chdir={{ luarocks_dir.stdout }}
+
+- name: make luarocks
+  shell: /usr/bin/make chdir={{ luarocks_dir.stdout }}
+
+- name: make install luarocks
+  shell: /usr/bin/make install chdir={{ luarocks_dir.stdout }}
+  sudo: yes

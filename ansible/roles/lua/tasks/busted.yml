@@ -1,0 +1,5 @@
+# Installs busted
+
+- name: install busted
+  shell: luarocks install busted
+  sudo: yes

@@ -2,8 +2,28 @@
 # BASICS
 # ====================================================
 
-- name: Update APT package cache
-  action: apt update_cache=yes
+#- name: Update APT package cache
+#  action: apt update_cache=yes
   
+- name: ensure unzip is installed for luarocks
+  apt: pkg=unzip state=installed
+
 - name: install lua
   apt: pkg=lua5.2 state=installed
+
+# Check if luarocks is installed
+- name: test if luarocks binary is installed
+  stat: path=/usr/local/bin/luarocks
+  register: st
+
+- include: luarocks.yml
+  when: not st.stat.exists
+
+# Check if busted is installed
+- name: test if busted binary is installed
+  stat: path=/usr/local/bin/busted
+  register: busted_st
+
+- include: busted.yml
+  when: not busted_st.stat.exists
+
