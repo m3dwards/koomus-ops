@@ -1,0 +1,9 @@
+---
+# BASICS
+# ====================================================
+
+- name: Update APT package cache
+  action: apt update_cache=yes
+  
+- name: install lua
+  apt: pkg=lua5.2 state=installed
