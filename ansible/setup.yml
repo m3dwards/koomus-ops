@@ -12,6 +12,7 @@
     - dev-tools
     - redis
     - triumvirate
+    - lua
 
 - hosts: all
   sudo: no
