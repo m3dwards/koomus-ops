@@ -35,3 +35,9 @@
     repo=git@github.com:garycrawford/koomus.git
     dest=/opt/dev/koomus
     update=no
+
+- git:
+    repo=git@github.com:garycrawford/zapel.git
+    dest=/opt/dev/zapel
+    update=no
+
