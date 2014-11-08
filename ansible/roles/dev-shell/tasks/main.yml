@@ -41,3 +41,7 @@
     dest=/opt/dev/zapel
     update=no
 
+- git:
+    repo=git@github.com:garycrawford/koomus.hippo.git
+    dest=/opt/dev/koomus.hippo
+    update=no
