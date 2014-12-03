@@ -1,0 +1,7 @@
+---
+# AWS CLI TOOLS
+# ====================================================
+
+- name: install aws tools
+  pip: name=awscli
+  sudo: yes
