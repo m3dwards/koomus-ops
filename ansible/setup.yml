@@ -6,6 +6,8 @@
     redis_conf_path: /etc/redis/
     install_path: /usr/local/bin/lein # system wide install
     lein_script_path: https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
+    aws_access_key_id: "{{ lookup('pipe','echo $AWS_ACCESS_KEY_ID') }}"
+    aws_secret_access_key: "{{ lookup('pipe','echo $AWS_SECRET_ACCESS_KEY') }}"
   roles:
     - firewall
     - clojure
@@ -13,6 +15,7 @@
     - redis
     - triumvirate
     - lua
+    - aws-cli
 
 - hosts: all
   sudo: no
