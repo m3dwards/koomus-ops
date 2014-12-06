@@ -38,6 +38,9 @@
 - name: install mustang vim
   git: repo=https://github.com/croaker/mustang-vim.git dest=/home/vagrant/.vim/bundle/mustang-vim
 
+- name: install ctrl space
+  git: repo=https://github.com/szw/vim-ctrlspace dest=/home/vagrant/.vim/bundle/vim-ctrlspace
+
 - name: tmux dev script | add to bin
   copy: src=koomus dest=/usr/local/bin/koomus
 
