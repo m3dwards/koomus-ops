@@ -2,6 +2,10 @@
 # AWS CLI TOOLS
 # ====================================================
 
+- name: make sure pip is installed
+  apt: name=python-pip state=present
+  sudo: yes
+
 - name: install aws tools
   pip: name=awscli
   sudo: yes
