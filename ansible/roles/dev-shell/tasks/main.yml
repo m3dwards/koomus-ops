@@ -50,3 +50,16 @@
     repo=git@github.com:maxwe789/koomus.trees.git
     dest=/opt/dev/koomus.trees
     update=no
+
+- name: install tree
+  apt: name=tree state=present
+  sudo: yes
+
+- name: install ack
+  apt: name=ack-grep state=present
+  sudo: yes
+
+- name: rename ack-grep to ack
+  command: dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
+  sudo: yes
+
