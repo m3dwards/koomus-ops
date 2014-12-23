@@ -1,0 +1,19 @@
+---
+# SETUP KOOMUS SCRIPTS
+# ====================================================
+
+- name: koomus scripts | git clone scripts
+  git:
+    repo=git@github.com:garycrawford/koomus-scripts.git
+    dest=/opt/dev/koomus-scripts
+    update=no
+
+- name: koomus scripts | create bin for scripts
+  file: path=/opt/bin state=directory
+
+- name: koomus scripts | symlink scripts into location
+  file: src=/opt/dev/koomus-scripts/{{ item.path }} dest=/opt/bin/{{ item.dest }} state=link
+  with_items:
+    - { path: 'pipe-to-graphite', dest: 'pipe-to-graphite' }
+    - { path: 'conrun', dest: 'conrun' }
+    - { path: 'constat', dest: 'constat' }
