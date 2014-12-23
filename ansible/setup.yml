@@ -16,6 +16,7 @@
     - triumvirate
     - lua
     - aws-cli
+    - koomus-scripts
 
 - hosts: all
   sudo: no
